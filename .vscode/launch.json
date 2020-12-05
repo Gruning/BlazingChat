@@ -8,7 +8,33 @@
             "name": "Launch and Debug Standalone Blazor WebAssembly App",
             "type": "blazorwasm",
             "request": "launch",
-            "cwd": "${workspaceFolder}/Server"
+            "cwd": "${workspaceFolder}/Server",
+            // "runtimeexEcutable":"/snap/bin/chromium",//"/usr/bin/chromium",
+            // "targetTypes": ["page", "webview"],
+
+        },
+        {
+            "name": ".NET Core Launch (Blazor Standalone)",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "dotnet",
+            "args": [
+                "run"
+            ],
+            "cwd": "${workspaceFolder}/Server",
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        {
+            "name": ".NET Core Debug Blazor Web Assembly in Chrome",
+            "type": "pwa-chrome",
+            "request": "launch",
+            "timeout": 30000,
+            "url": "https://localhost:5001",
+            "webRoot": "${workspaceFolder}/Server",
+            "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}"
         }
-    ]
+    ]//,
+    //"runtimeExecutable":"custom"
 }
