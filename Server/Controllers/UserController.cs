@@ -28,7 +28,9 @@ namespace BlazingChat.Server.Controllers
         [HttpGet]
         public List<User> Get()
         {
-
+            using(var _context = new BlazingChatContext()){
+                return _context.Users.ToList();
+            }
         }
     }
 }
