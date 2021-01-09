@@ -29,6 +29,8 @@ namespace BlazingChat.Server.Controllers
         public List<User> Get()
         {
             using(var _context = new BlazingChatContext()){
+                var result = _context.Users.ToList();
+                System.Console.WriteLine(result);
                 return _context.Users.ToList();
             }
         }
