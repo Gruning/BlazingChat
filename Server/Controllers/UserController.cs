@@ -19,20 +19,19 @@ namespace BlazingChat.Server.Controllers
         };
 
         private readonly ILogger<UserController> _logger;
+        private readonly BlazingChatContext _context;
 
-        public UserController(ILogger<UserController> logger)
+        public UserController(ILogger<UserController> logger, BlazingChatContext context)
         {
+            _context = context;
             _logger = logger;
         }
 
         [HttpGet]
         public List<User> Get()
         {
-            using(var _context = new BlazingChatContext()){
-                var result = _context.Users.ToList();
-                System.Console.WriteLine(result);
-                return _context.Users.ToList();
-            }
+
+            return _context.Users.ToList();
         }
     }
 }
