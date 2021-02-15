@@ -1,7 +1,28 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+<div class='col-12'>
+    <input type='text' class='form-control'placeholder='first name'>
+    <br/>
+    <input type='text' class='form-control'placeholder='last name'>
+    <br/>
+    <input type='text' class='form-control'placeholder='email address'>
+    <br/>
+    <button class='btn btn-primary' @onclick="updateProfile">Update Profile</button>
+    <button class='btn btn-primary' @onclick="getProfile">Get Profile</button>
+    <span>&nbsp;&nbsp;</span>@Message
+</div>
 
-Welcome to your new app.
+@code{
+    public long UserId {get;set;}
+    public string FirstName {get;set;}
+    public string LastName {get;set;}
+    public string EmailAddress {get;set;}
+    public string Message {get;set;}
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    private void updateProfile(){
+        Message="Profile updated successfully";
+    }
+    private void updateProfile(){
+        Message="Profile loaded successfully";
+    }
+}
