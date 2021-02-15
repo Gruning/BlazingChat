@@ -1,5 +1,6 @@
 ﻿@page "/contacts"
 @using BlazingChat.Shared
+@using System.Collections.Generic
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
 
@@ -22,7 +23,7 @@
     protected override async Task OnInitializedAsync()
     {
         //forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
-        ContactList = await Http.GetFromJsonAsync<List<Contact>("User");
+          ContactList = await Http.GetFromJsonAsync<List<Contact>>("user");
 
         //ContactList.Add(new Contact(6, "Charles", "Leclerc"));
         //ContactList.Add(new Contact(55, "Carlos", "Sainz"));
