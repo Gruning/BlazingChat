@@ -28,7 +28,7 @@ namespace BlazingChat.Server.Controllers
             List<User> users = _context.Users.ToList();
             List<Contact> contacts =  new List<Contact>();
             foreach (var user in users){
-                contacts.Add(new Contact(user.UserId,user.FirstName, user.LastName));
+                contacts.Add(new Contact(Convert.ToInt64(user.UserId),user.FirstName, user.LastName));
             }
             return contacts;
         }
