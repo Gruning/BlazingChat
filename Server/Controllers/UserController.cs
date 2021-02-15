@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BlazingChat.Shared;
 using BlazingChat.Server.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlazingChat.Server.Controllers
 {
@@ -34,6 +35,12 @@ namespace BlazingChat.Server.Controllers
                 cont ++;
             }
             return contacts;
+        }
+
+        [HttpGet("getprofile/{userId}")]
+        public async Task<User>GetProfile(int userId){
+            return await _context.Users.Where(u=>u.UserId == userId).FirstOrDefaultAsync();
+            // return /*await*/ _context.Users.Where(u=>u.UserId == userId).FirstOrDefault();//FirstOrDefaultAsync();
         }
     }
 }
