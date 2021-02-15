@@ -13,11 +13,6 @@ namespace BlazingChat.Server.Controllers
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly ILogger<UserController> _logger;
         private readonly BlazingChatContext _context;
 
@@ -28,10 +23,14 @@ namespace BlazingChat.Server.Controllers
         }
 
         [HttpGet]
-        public List<User> Get()
+        public List<Contact> Get()
         {
-
+            List<User> users = _context.Users.ToList()
+            List<Contact> contacts =  new List<Contact>()
             return _context.Users.ToList();
+            foreach (var user in users)
+                contacts.Add(new Contact(user.FirstName, user.LastName))
+            return contacts
         }
     }
 }
