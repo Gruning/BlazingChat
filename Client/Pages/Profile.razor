@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using BlazingChat.ViewModels
 
 <div class='col-12'>
     <input type='text' class='form-control'placeholder='first name'>
@@ -9,7 +10,7 @@
     <br/>
     <button class='btn btn-primary' @onclick="updateProfile">Update Profile</button>
     <button class='btn btn-primary' @onclick="getProfile">Get Profile</button>
-    <span>&nbsp;&nbsp;</span>@Message
+    <span>&nbsp;&nbsp;</span>@_profileViewModel.Message
 </div>
 
 @code{
@@ -17,12 +18,13 @@
     public string FirstName {get;set;}
     public string LastName {get;set;}
     public string EmailAddress {get;set;}
-    public string Message {get;set;}
+
+    private ProfileViewModel _profileViewModel = new ProfileViewModel()
 
     private void updateProfile(){
-        Message="Profile updated successfully";
+        _profileViewModel.Message="Profile updated successfully";
     }
     private void updateProfile(){
-        Message="Profile loaded successfully";
+        _profileViewModel.Message="Profile loaded successfully";
     }
 }
