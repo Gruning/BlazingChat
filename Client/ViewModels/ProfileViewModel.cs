@@ -17,5 +17,13 @@ namespace BlazingChat.ViewModels{
                 UserId = user.UserId,
             };
         }
+        public static implicit operator User(ProfileViewModel profileViewModel){
+            return new User{
+                FirstName = profileViewModel.FirstName,
+                LastName = profileViewModel.LastName,
+                EmailAddress = profileViewModel.EmailAddress,
+                UserId = profileViewModel.UserId,
+            };
+        }
     }
 }

@@ -19,7 +19,9 @@
 
     private ProfileViewModel _profileViewModel = new ProfileViewModel();
 
-    private void updateProfile(){
+    private async Task updateProfile(){
+        User user = _profileViewModel;
+        await HttpClient.PutAsJsonAsync("user/updateprofile/10",user);
         _profileViewModel.Message="Profile updated successfully";
     }
     private async Task getProfile(){
