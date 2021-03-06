@@ -19,10 +19,14 @@ namespace BlazingChat.Client
             builder.RootComponents.Add<App>("#app");
             // builder.RootComponents.Add<App>("customTag");
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddSingleton<IProfileViewModel,ProfileViewModel>();
-            
-            await builder.Build().RunAsync();
+
+            var host = builder.Build(); 
+            var profileViewModel = host.Services.GetRequiredService<IProfileViewModel>();
+            profileViewModel.getProfile();
+
+            await host.RunAsync();
         }
     }
 }
