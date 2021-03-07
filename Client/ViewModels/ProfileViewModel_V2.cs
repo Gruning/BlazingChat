@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using BlazingChat.Shared.Models;
 
 namespace BlazingChat.ViewModels{
@@ -21,6 +22,17 @@ namespace BlazingChat.ViewModels{
        this.FirstName="NewDriver"; 
         this.Message=this.FirstName + "'s Profile loaded successfully --faster";
     }
+
+        Task IProfileViewModel.updateProfile()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        Task IProfileViewModel.getProfile()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public static implicit operator  ProfileViewModel_V2(User user){
             return new ProfileViewModel_V2{
                 FirstName = user.FirstName,

@@ -1,3 +1,6 @@
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
 using BlazingChat.Shared.Models;
 
 namespace BlazingChat.ViewModels{
@@ -8,16 +11,31 @@ namespace BlazingChat.ViewModels{
         public string LastName {get;set;}
         public string EmailAddress {get;set;}
         public string Message {get;set;}
+        public HttpClient _httpClient { get; }
 
-    public void updateProfile(){
-    //    User user = _profileViewModel;
-    //   await HttpClient.PutAsJsonAsync("user/updateprofile/10",user);
+        public ProfileViewModel()
+    {
+    
+    }
+    public ProfileViewModel(HttpClient httpClient)
+    {
+            _httpClient = httpClient;
+        }
+    public async Task updateProfile(){
+        User user =this; 
+       await _httpClient.PutAsJsonAsync("user/updateprofile/10",user);
         this.Message="Profile updated successfully";
     }
-    public void getProfile(){
-        //User user = await HttpClient.GetFromJsonAsync<User>("user/getprofile/10");
-        //_profileViewModel = user;
+    public async Task getProfile(){
+        User user = await _httpClient.GetFromJsonAsync<User>("user/getprofile/10");
+       loadCurrentObject(user); 
         this.Message="Profile loaded successfully";
+    
+    }
+    private void loadCurrentObject(ProfileViewModel profileViewModel){
+        this.FirstName = profileViewModel.FirstName;
+        this.LastName= profileViewModel.LastName;
+        this.EmailAddress=profileViewModel.EmailAddress;
     }
         public static implicit operator ProfileViewModel(User user){
             return new ProfileViewModel{

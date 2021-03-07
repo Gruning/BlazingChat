@@ -17,16 +17,12 @@ namespace BlazingChat.Client
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
-            // builder.RootComponents.Add<App>("customTag");
 
-            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            builder.Services.AddSingleton<IProfileViewModel,ProfileViewModel>();
+    //        builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            var host = builder.Build(); 
-            var profileViewModel = host.Services.GetRequiredService<IProfileViewModel>();
-            profileViewModel.getProfile();
-
-            await host.RunAsync();
+           
+            builder.Services.AddHttpClient<IProfileViewModel,ProfileViewModel>("BlazingChatClient",client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) );
+            await builder.Build().RunAsync();
         }
     }
 }
